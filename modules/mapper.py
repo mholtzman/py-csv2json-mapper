@@ -11,7 +11,11 @@ def parse_schema_entry(node, entry, data):
 	
 	if len(entry) == 1:
 		# if this is a leaf, add the data
-		node[next_child] = data
+		node_data = data.split(';')
+		if (len(node_data) == 1):
+			node[next_child] = node_data[0]
+		else:
+			node[next_child] = node_data
 	else:	
 		# if this is not a leaf, recursively process the rest of the entry
 		if not next_child in node:
