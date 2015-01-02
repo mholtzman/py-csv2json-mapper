@@ -1,10 +1,18 @@
 from modules import mapper
-import json
+import json, sys
 
+# constants, make these configurable via options
 FIELD_SEPARATOR = ','
 SCHEMA_DELIM = '.'
 
-with open('test-data.csv', 'r') as input_file:
+if len(sys.argv) != 3:
+	print("You must provide an input and output file! Usage: csv2json.py <inputfile> <outputfile>")
+	sys.exit()
+	
+input_file_path = sys.argv[1]
+output_file_path = sys.argv[2]
+
+with open(input_file_path, 'r') as input_file:
 	lines = input_file.read().splitlines()
 
 	# the first line is the schema for the entire file
@@ -14,7 +22,7 @@ with open('test-data.csv', 'r') as input_file:
 	for row in lines[1:]:
 		data.append(mapper.parse_row(schema, row.split(FIELD_SEPARATOR), SCHEMA_DELIM))
 		
-	with open('parsed_output.json', 'w') as output_file:
+	with open(output_file_path, 'w') as output_file:
 		output_file.write(json.dumps(data, indent=2))
 	
 	if output_file.closed:

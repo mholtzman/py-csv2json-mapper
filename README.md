@@ -5,7 +5,7 @@ This is a simple utility that takes a flat CSV file and transforms it into a JSO
 Syntax
 ------
 
-`python csv2json.py input_filename output_filename`
+`csv2json.py <input_filename> <output_filename>`
 
 ***
 
@@ -13,12 +13,7 @@ The first row of the CSV represents the JSON schema. Each column is the path to 
 
 Desired JSON:
 ```json
-"my_data": {
-  "value1": "hello",
-	"more_data": {
-	  "value2": "goodbye"
-	}
-}
+"my_data": {"value1": "hello","more_data": {"value2": "goodbye"}}
 ```
 
 The CSV file to represent this would look as follows:
